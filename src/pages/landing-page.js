@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react"
 import { GetUsers } from "../services/auth-services";
 import styled from "@emotion/styled";
+import { CSVLink, CSVDownload } from "react-csv";
 
 const Table = styled("div")`
     display: grid;
@@ -25,6 +26,14 @@ const Data = styled("p")`
     align-items: center;
 `;
 
+const DownloadButton = styled(`button`)`
+    background: #6096B4;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 4px;
+    margin-top: 5px;    
+`;
+
 export default function LandingPage() {
     const [users, setUsers] = useState();
     useEffect(() => {
@@ -42,6 +51,7 @@ export default function LandingPage() {
     const header = ["Nombre", "Apellido", "Edad", "Genero", "Email", "Nacionalidad", "Foto"]
     let even = null
     return (
+        <>
         <Table>
             {header?.map(function(headerTitle) {
                 return (
@@ -65,5 +75,12 @@ export default function LandingPage() {
                 )
             })}
         </Table>
+            {(users)? 
+                <div style={{ display: "flex", justifyContent: "end", marginRight: "5px"}}>
+                    <DownloadButton><CSVLink data={users} filename={"users.csv"} style={{color: "white", textDecoration: "none"}}>Download Users List</CSVLink></DownloadButton>
+                    <CSVDownload data={users} target="_blank" /> 
+                </div>
+            : ""}
+        </>
     )
 }
