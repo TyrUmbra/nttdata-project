@@ -4,13 +4,14 @@ import { BrowserRouter } from "react-router-dom";
 import { Global } from "@emotion/react";
 
 
-import { reset } from "./style/global";
+import { global, reset } from "./styles/global";
 import App from "./app";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <BrowserRouter>
     <Global styles={reset} />
+    <Global styles={global} />
     <App />
   </BrowserRouter>
 );

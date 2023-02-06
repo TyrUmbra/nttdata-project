@@ -1,4 +1,6 @@
 import { css } from "@emotion/react";
+import { colors } from "./colors";
+import { fonts } from "./typography";
 
 export const reset = css`
   /* CSS Reset by Andy Bell (https://piccalil.li/blog/a-modern-css-reset/) */
@@ -66,5 +68,13 @@ export const reset = css`
       transition-duration: 0.01ms !important;
       scroll-behavior: auto !important;
     }
+  }
+`;
+export const global = css`
+  @import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Montserrat:wght@400;500;600&display=swap");
+  body {
+    font-family: ${fonts.primary};
+    margin: 0 auto;
+    color: ${colors.gray[900]};
   }
 `;
